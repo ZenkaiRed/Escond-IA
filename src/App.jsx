@@ -279,7 +279,7 @@ function App() {
                 src="images/appLogoIcon.png"
                 width={117}
                 height={45}
-                alt="ChatGPT"
+                alt="Miner-IA Logo"
               />
               <h1>Bienvenid@ a Miner-IA ⛏️</h1>
               <h3>¿En qué te puedo ayudar hoy?</h3>
@@ -310,7 +310,7 @@ function App() {
                         <BiSolidUserCircle size={28.8} />
                       </div>
                     ) : (
-                      <img src="images/ChatBHP.png" alt="ChatGPT" />
+                      <img src="images/ChatBHP.png" alt="Miner-IA Logo" />
                     )}
                     {isUser ? (
                       <div>
@@ -319,7 +319,7 @@ function App() {
                       </div>
                     ) : (
                       <div>
-                        <p className="role-title">ChatGPT</p>
+                        <p className="role-title">Miner-IA</p>
                         <p>{chatMsg.content}</p>
                       </div>
                     )}
