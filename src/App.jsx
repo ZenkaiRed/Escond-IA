@@ -37,7 +37,7 @@ function App() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    return setErrorText('My billing plan is gone because of many requests.');
+    return setErrorText('El plan de pago finalizó debido a muchas solicitudes.');
     if (!text) return;
 
     setIsResponseLoading(true);
@@ -158,7 +158,7 @@ function App() {
         <section className={`sidebar ${isShowSidebar ? 'open' : ''}`}>
           <div className='sidebar-header' onClick={createNewChat} role='button'>
             <BiPlus size={20} />
-            <button>New Chat</button>
+            <button>Nuevo Chat</button>
           </div>
           <div className='sidebar-history'>
             {uniqueTitles.length > 0 && previousChats.length !== 0 && (
@@ -213,13 +213,9 @@ function App() {
             )}
           </div>
           <div className='sidebar-info'>
-            <div className='sidebar-info-upgrade'>
-              <BiUser size={20} />
-              <p>Upgrade plan</p>
-            </div>
             <div className='sidebar-info-user'>
               <BiSolidUserCircle size={20} />
-              <p>User</p>
+              <p>Usuario</p>
             </div>
           </div>
         </section>
@@ -228,16 +224,15 @@ function App() {
           {!currentTitle && (
             <div className='empty-chat-container'>
               <img
-                src='images/chatgpt-logo.svg'
-                width={45}
+                src='images/appLogoIcon.png'
+                width={117}
                 height={45}
                 alt='ChatGPT'
               />
-              <h1>Chat GPT Clone</h1>
-              <h3>How can I help you today?</h3>
+              <h1>Bienvenido a Escond-IA ⛏️</h1>
+              <h3>¿En qué te puedo ayudar hoy?</h3>
             </div>
           )}
-
           {isShowSidebar ? (
             <MdOutlineArrowRight
               className='burger'
@@ -263,7 +258,7 @@ function App() {
                         <BiSolidUserCircle size={28.8} />
                       </div>
                     ) : (
-                      <img src='images/chatgpt-logo.svg' alt='ChatGPT' />
+                      <img src='images/appLogoIcon.png' alt='ChatGPT' />
                     )}
                     {isUser ? (
                       <div>
@@ -285,14 +280,13 @@ function App() {
             {errorText && <p className='errorText'>{errorText}</p>}
             {errorText && (
               <p id='errorTextHint'>
-                *You can clone the repository and use your paid OpenAI API key
-                to make this work.
+
               </p>
             )}
             <form className='form-container' onSubmit={submitHandler}>
               <input
                 type='text'
-                placeholder='Send a message.'
+                placeholder='Escribir un mensaje.'
                 spellCheck='false'
                 value={isResponseLoading ? 'Processing...' : text}
                 onChange={(e) => setText(e.target.value)}
@@ -305,8 +299,7 @@ function App() {
               )}
             </form>
             <p>
-              ChatGPT can make mistakes. Consider checking important
-              information.
+              Escond-IA es un chatbot que usa GPT-4o de OpenAI para generar sus respuestas.
             </p>
           </div>
         </section>
