@@ -55,6 +55,17 @@ function App() {
     }
   }, []);
 
+  // Función para leer texto en voz alta
+  const speakText = (text) => {
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "es-ES"; // Configura el idioma, en este caso español
+      window.speechSynthesis.speak(utterance);
+    } else {
+      console.error("La API de Speech Synthesis no está disponible en este navegador.");
+    }
+  };
+
   // Manejador del botón de micrófono
   const handleMicrophoneClick = () => {
     if (isListening) {
@@ -122,6 +133,9 @@ function App() {
         setTimeout(() => {
           setText("");
         }, 2);
+
+        // Leer la respuesta en voz alta
+        speakText(data.message.content);
       }
     } catch (e) {
       setErrorText(e.message);
