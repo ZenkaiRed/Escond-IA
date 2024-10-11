@@ -4,20 +4,58 @@ import {
   useRef,
   useCallback,
   useLayoutEffect,
-} from "react";
-import { BiPlus, BiUser, BiSend, BiSolidUserCircle } from "react-icons/bi";
-import { MdOutlineArrowLeft, MdOutlineArrowRight } from "react-icons/md";
+} from 'react';
+import { BiPlus, BiUser, BiSend, BiSolidUserCircle, BiMicrophone } from 'react-icons/bi';
+import { MdOutlineArrowLeft, MdOutlineArrowRight } from 'react-icons/md';
 
 function App() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [message, setMessage] = useState(null);
   const [previousChats, setPreviousChats] = useState([]);
   const [localChats, setLocalChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
   const [isResponseLoading, setIsResponseLoading] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  const [errorText, setErrorText] = useState('');
   const [isShowSidebar, setIsShowSidebar] = useState(false);
+  const [isListening, setIsListening] = useState(false); // Nuevo estado
   const scrollToLastItem = useRef(null);
+  const [recognition, setRecognition] = useState(null);
+
+  useEffect(() => {
+    // Verificamos si la API está disponible
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      const recognitionInstance = new SpeechRecognition();
+      recognitionInstance.continuous = false;  // Se detiene al recibir el resultado
+      recognitionInstance.lang = 'es-ES';
+      recognitionInstance.interimResults = false;
+
+      // Evento cuando se recibe el resultado del reconocimiento de voz
+      recognitionInstance.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setText(transcript);
+        setIsListening(false);  // Detenemos la escucha automáticamente
+      };
+
+      // Evento cuando se detiene el reconocimiento
+      recognitionInstance.onend = () => {
+        setIsListening(false);
+      };
+
+      setRecognition(recognitionInstance);
+    }
+  }, []);
+
+  // Manejador del botón de micrófono
+  const handleMicrophoneClick = () => {
+    if (isListening) {
+      recognition.stop();  // Si está escuchando, lo detenemos
+    } else {
+      recognition.start(); // Si no está escuchando, lo iniciamos
+    }
+    setIsListening(!isListening);
+  };
 
   const createNewChat = () => {
     setMessage(null);
@@ -277,18 +315,26 @@ function App() {
             {errorText && <p id="errorTextHint"></p>}
             <form className="form-container" onSubmit={submitHandler}>
               <input
-                type="text"
-                placeholder="Escribir un mensaje."
-                spellCheck="false"
-                value={isResponseLoading ? "Processing..." : text}
-                onChange={(e) => setText(e.target.value)}
-                readOnly={isResponseLoading}
-                className="input-text"
+                  type="text"
+                  placeholder="Escribir un mensaje."
+                  spellCheck="false"
+                  value={isResponseLoading ? "Processing..." : text}
+                  onChange={(e) => setText(e.target.value)}
+                  readOnly={isResponseLoading}
+                  className="input-text"
               />
+              <button
+                  className="microphone-button"
+                  type="button"
+                  onClick={handleMicrophoneClick}
+              >
+                <BiMicrophone size={20} color={isListening ? "red" : "black"}/>
+              </button>
+
               {!isResponseLoading && (
-                <button type="submit">
-                  <BiSend size={20} />
-                </button>
+                  <button className="button-submit" type="submit" style={{ marginLeft: '15px' }}>
+                    <BiSend size={20}/>
+                  </button>
               )}
             </form>
             <p>
