@@ -270,8 +270,7 @@ button {
   color: #8e8fa1;
 }
 
-.form-container svg {
-  fill: #8e8fa1;
+.button-submit {
   transform: rotate(-45deg);
 }
 
