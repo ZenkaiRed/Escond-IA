@@ -1,1 +1,1 @@
-export const API_URL = "https://escond-ia-api.onrender.com"
+export const API_URL = "https://escond-ia-api.onrender.com" 

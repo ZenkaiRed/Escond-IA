@@ -162,6 +162,11 @@ button {
 
 .main h1 {
   font-size: 2rem;
+  text-align: center;
+}
+
+.main h3 {
+  text-align: center;
 }
 
 .main-header {

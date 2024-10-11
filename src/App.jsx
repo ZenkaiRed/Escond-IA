@@ -281,7 +281,7 @@ function App() {
                 height={45}
                 alt="ChatGPT"
               />
-              <h1>Bienvenido a Miner-IA ⛏️</h1>
+              <h1>Bienvenid@ a Miner-IA ⛏️</h1>
               <h3>¿En qué te puedo ayudar hoy?</h3>
             </div>
           )}
