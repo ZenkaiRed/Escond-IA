@@ -50,6 +50,7 @@ function App() {
       },
       body: JSON.stringify({
         message: text,
+        history: previousChats,
       }),
     };
 
@@ -253,7 +254,7 @@ function App() {
                         <BiSolidUserCircle size={28.8} />
                       </div>
                     ) : (
-                      <img src="images/appLogoIcon.png" alt="ChatGPT" />
+                      <img src="images/ChatBHP.png" alt="ChatGPT" />
                     )}
                     {isUser ? (
                       <div>
