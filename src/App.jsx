@@ -281,7 +281,7 @@ function App() {
                 height={45}
                 alt="ChatGPT"
               />
-              <h1>Bienvenido a Escond-IA ⛏️</h1>
+              <h1>Bienvenido a Miner-IA ⛏️</h1>
               <h3>¿En qué te puedo ayudar hoy?</h3>
             </div>
           )}
@@ -360,7 +360,7 @@ function App() {
               )}
             </form>
             <p>
-              Escond-IA es un chatbot que usa GPT-4o de OpenAI para generar sus
+              Miner-IA es un chatbot que usa GPT-4o de OpenAI para generar sus
               respuestas.
             </p>
           </div>
