@@ -46,7 +46,6 @@ function App() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: import.meta.env.VITE_AUTH_TOKEN,
       },
       body: JSON.stringify({
         message: text,
@@ -56,7 +55,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/completions`,
+        "http://localhost:5000/api/completions",
         options
       );
 
