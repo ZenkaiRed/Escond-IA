@@ -59,10 +59,6 @@ function App() {
         options
       );
 
-      if (response.status === 429) {
-        return setErrorText("Too many requests, please try again later.");
-      }
-
       const data = await response.json();
 
       if (data.error) {
@@ -74,7 +70,7 @@ function App() {
 
       if (!data.error) {
         setErrorText("");
-        setMessage(data.choices[0].message);
+        setMessage(data.message);
         setTimeout(() => {
           scrollToLastItem.current?.lastElementChild?.scrollIntoView({
             behavior: "smooth",
